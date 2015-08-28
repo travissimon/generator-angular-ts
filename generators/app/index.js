@@ -81,6 +81,14 @@ module.exports = yeoman.generators.Base.extend({
 				}
 			);
 			this.fs.copy(
+				this.templatePath('_bowerrc'),
+				this.destinationPath('.bowerrc')
+			);
+			this.fs.copy(
+				this.templatePath('_editorconfig'),
+				this.destinationPath('.editorconfig')
+			);
+			this.fs.copy(
 				this.templatePath('_gitignore'),
 				this.destinationPath('.gitignore')
 			);
@@ -104,7 +112,7 @@ module.exports = yeoman.generators.Base.extend({
 				this.templatePath('_package.json'),
 				this.destinationPath('package.json'),
 				{
-					name: this.props.squashedNameSnakeCase,
+					projectName: this.props.squashedNameSnakeCase,
 					description: this.props.projectName
 				}
 			);
@@ -118,50 +126,9 @@ module.exports = yeoman.generators.Base.extend({
 			);
 		},
 
-		favicons: function() {
-			this.fs.copy(
-				this.templatePath('/src/client/favicon.ico'),
-				this.destinationPath('/src/client/favicon.ico')
-			);
-			this.fs.copy(
-				this.templatePath('/src/client/favicon-16x16.png'),
-				this.destinationPath('/src/client/favicon-16x16.png')
-			);
-			this.fs.copy(
-				this.templatePath('/src/client/favicon-32x32.png'),
-				this.destinationPath('/src/client/favicon-32x32.png')
-			);
-			this.fs.copy(
-				this.templatePath('/src/client/favicon-96x96.png'),
-				this.destinationPath('/src/client/favicon-96x96.png')
-			);
-			this.fs.copy(
-				this.templatePath('/src/client/favicon-194x194.png'),
-				this.destinationPath('/src/client/favicon-194x194.png')
-			);
-		},
-
 		images: function() {
-			this.fs.copy(
-				this.templatePath('/src/client/images/busy.gif'),
-				this.destinationPath('/src/client/images/busy.gif')
-			);
-			this.fs.copy(
-				this.templatePath('/src/client/images/favicon.ico'),
-				this.destinationPath('/src/client/images/favicon.ico')
-			);
-			this.fs.copy(
-				this.templatePath('/src/client/images/logob.gif'),
-				this.destinationPath('/src/client/images/logob.gif')
-			);
-			this.fs.copy(
-				this.templatePath('/src/client/images/logo.png'),
-				this.destinationPath('/src/client/images/logo.png')
-			);
-			this.fs.copy(
-				this.templatePath('/src/client/images/nicta-logo.png'),
-				this.destinationPath('/src/client/images/nicta-logo.png')
-			);
+			this.fs.copy('/src/client/favicon*', '/src/client/');
+			this.fs.copy('/src/client/images/*.*', '/src/client/images/');
 		},
 
 		styles: function() {
@@ -174,7 +141,7 @@ module.exports = yeoman.generators.Base.extend({
 				this.templatePath('/src/client/index.html'),
 				this.destinationPath('/src/client/index.html'),
 				{
-					name: this.props.projectName
+					appName: this.props.projectName
 				}
 			);
 			this.fs.copy(
@@ -183,27 +150,9 @@ module.exports = yeoman.generators.Base.extend({
 			);
 		},
 
-		projectfiles: function () {
-			this.fs.copy(
-				this.templatePath('editorconfig'),
-				this.destinationPath('.editorconfig')
-			);
-			this.fs.copy(
-				this.templatePath('jshintrc'),
-				this.destinationPath('.jshintrc')
-			);
-		},
-
 		app: function () {
-			this.fs.copy(
-				this.templatePath('editorconfig'),
-				this.destinationPath('.editorconfig')
-			);
-			this.fs.copy(
-				this.templatePath('jshintrc'),
-				this.destinationPath('.jshintrc')
-			);
-		},
+			this.log('More files to copy');
+		}
 
 	},
 

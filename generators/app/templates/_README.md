@@ -1,8 +1,8 @@
-# <%= projectName =>
+# <%= projectName %>
 
 ## Introduction
 
-<%= description =>
+<%= description %>
 
 ## Prerequisites
 

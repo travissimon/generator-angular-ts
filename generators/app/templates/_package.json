@@ -1,6 +1,6 @@
 {
-	"name": "<%= name %>",
-	"description": "<%= description =>",
+	"name": "<%= projectName %>",
+	"description": "<%= description %>",
 	"version": "0.1.0",
 	"scripts": {
 		"init": "npm install",
