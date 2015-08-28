@@ -1,0 +1,30 @@
+# emacs files
+*~
+\#*\#
+.\#*
+
+# Node and bower
+bower_components
+node_modules
+
+# Build artifacts
+build
+dist
+.tmp
+
+# Test reporters
+**/test/coverage
+report
+
+
+# Auto-generated files
+src/client/js
+src/client/templates
+src/client/app/typings
+
+
+# OS generated files?
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db

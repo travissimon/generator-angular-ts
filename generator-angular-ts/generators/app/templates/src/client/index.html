@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+	<style>
+	  /* This helps the ng-show/ng-hide animations start at the right place. */
+      /* Since Angular has this but needs to load, this gives us the class early. */
+      .ng-hide { display: none!important; }
+    </style>
+    <title ng-bind="title"><%= appName %></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+
+    <!-- build:css styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/app.css-->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/build/styles/style.css" />
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body>
+	<div>
+      <div ng-include="'app/layout/shell.template.html'"></div>
+      <div id="splash-page" ng-show="vm.showSplash">
+        <div class="page-splash">
+          <div class="page-splash-message">
+			Application loading
+          </div>
+          <div class="progress progress-striped active page-progress-bar">
+            <div class="bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- build:js js/lib.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js js/app.js-->
+    <!-- application:js -->
+    <script src="/src/client/js/app.init.js"></script>
+    <script src="/src/client/js/app.module.js"></script>
+    <script src="/src/client/js/layout/layout.module.js"></script>
+    <script src="/src/client/js/components/api/api.module.js"></script>
+    <script src="/src/client/js/components/navbar/navbar.module.js"></script>
+    <script src="/src/client/js/components/profiling/profiling.module.js"></script>
+    <script src="/src/client/js/components/routes/routes.module.js"></script>
+    <script src="/src/client/js/components/stacktrace/stacktrace.module.js"></script>
+    <script src="/src/client/js/pages/admin/app.pages.admin.module.js"></script>
+    <script src="/src/client/js/pages/articles/app.pages.articles.module.js"></script>
+    <script src="/src/client/js/app.routes.js"></script>
+    <script src="/src/client/js/pages/admin/app.pages.admin.routes.js"></script>
+    <script src="/src/client/js/pages/articles/app.pages.articles.routes.js"></script>
+    <script src="/src/client/js/layout/shell.controller.js"></script>
+    <script src="/src/client/js/components/api/article.model.js"></script>
+    <script src="/src/client/js/components/api/news.service.js"></script>
+    <script src="/src/client/js/components/navbar/navbar.directive.js"></script>
+    <script src="/src/client/js/components/profiling/profiling.service.js"></script>
+    <script src="/src/client/js/components/routes/route-helper.provider.js"></script>
+    <script src="/src/client/js/components/stacktrace/stacktrace.service.js"></script>
+    <script src="/src/client/js/pages/articles/article-detail.controller.js"></script>
+    <script src="/src/client/js/pages/articles/article-index.controller.js"></script>
+    <script src="/src/client/js/pages/articles/article-sidebar.directive.js"></script>
+    <!-- endinject -->
+
+    <!-- templates:js -->
+    <script src="/src/client/templates/templates.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
+  </body>
+</html>

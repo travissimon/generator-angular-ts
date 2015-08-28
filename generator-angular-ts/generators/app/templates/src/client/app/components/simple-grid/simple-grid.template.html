@@ -1,0 +1,37 @@
+<div class="simple-grid">
+  <div class="grid-search">
+	<form role="form" class="form-horizontal">
+	  <div class="form-group">
+		<div class="col-sm-8">
+		  <input type="text" class="form-control input-sm" ng-model="filterText" placeholder="{{vm.searchPlaceholder}}">
+		</div>
+		<button type="button" class="col-sm-2 btn btn-sm btn-default control"><i class="fa fa-search"></i> Search</button>
+	  </div>
+	</form>
+  </div>
+
+  <div class="grid-table">
+	<table class="table table-stripped table-hover">
+	  <thead>
+	  </thead>
+	  <tbody>
+	  </tbody>
+	  <tfoot>
+	  </tfoot>
+	</table>
+  </div>
+
+  <div class="grid-pager row">
+	<form role="form" class="form-horizontal">
+	  <div class="form-group">
+		<label class="col-sm-1 control-label">Page size</label>
+		<div class="col-sm-2">
+		  <select class="form-control input-sm" ng-model="pageSize" ng-options="opt for opt in pageSizeOptions"></select>
+		</div>
+		<span class="col-sm-8">
+		  <pagination style="margin: 0px" total-items="totalItems" ng-model="currentPage" items-per-page="pageSize" class="pagination-sm" boundary-links="false"></pagination>
+		</span>
+	  </div>
+	</form>
+  </div>
+</div>

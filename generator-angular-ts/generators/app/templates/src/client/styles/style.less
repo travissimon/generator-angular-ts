@@ -1,0 +1,176 @@
+@import 'bootstrap/bootstrap.less';
+
+@import 'nicta-variables.less';
+@import 'nicta.less';
+
+// various themes to choose from, courtesy of https://bootswatch.com/
+// n@import 'cerulean-variables.less';
+// @import 'cerulean.less';
+// @import 'darkly-variables.less';
+// @import 'darkly.less';
+// @import 'flatly-variables.less';
+// @import 'flatly.less';
+// @import 'slate-variables.less';
+// @import 'slate.less';
+// @import 'spacelab-variables.less';
+// @import 'spacelab.less';
+// @import 'superhero-variables.less';
+// @import 'superhero.less';
+
+* {
+}
+
+body {
+	 padding-top: 50px; /* fixed navbar - move body below */
+}	 
+
+
+/* Shell structure and layout */
+
+
+/* navbar */
+.navbar-brand {
+	display: none;
+	height: 50px;
+	float: left;
+}
+
+
+.navbar .divider-vertical {
+	display: none; /* will show for via @media */
+	height: 40px;
+	margin: 0 10px;
+	border-right: 1px solid #444;
+}
+
+
+/* Sidebar - Hide for mobile, display later */
+#sidebar {
+	border-right: 1px solid #666;
+	position: relative;
+	display: block;
+	padding: 20px;
+}
+
+
+/* Main content */
+#main {
+	padding: 20px;
+}
+
+@media (min-width: 768px) {
+	#main {
+		padding-right: 40px;
+		padding-left: 40px;
+	}
+}
+
+
+/* responsive page structure */
+@media (min-width: 992px) {
+	.navbar-brand {
+		display: block;
+	}
+
+	#sidebar {
+		position: fixed;
+		top: 55px;
+		bottom: 0;
+		left: 0;
+		z-index: 500;
+		display: block;
+		overflow-x: hidden;
+		overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+		border-right: 1px solid #666;
+	}
+
+	.navbar .divider-vertical {
+		display: block;
+	}
+}
+
+/* General content styling */
+
+/* Vertical spacing options */
+.space {
+	margin-top: 20px
+}
+.space-tiny {
+	margin-top: 5px;
+}
+.space-sm {
+	margin-top: 10px;
+}
+.space-md {
+	margin-top: 20px;
+}
+.space-lg {
+	margin-top: 40px;
+}
+
+
+
+
+/* Pages */
+
+
+/* Homepage splash and progress bar */
+
+#splash-page {
+    z-index: 99999 !important;
+}
+
+#splash-page .bar {
+    width: 100%;
+}
+
+.page-splash {
+    z-index: 99999 !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    opacity: .9;
+    pointer-events: auto;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: opacity 0.3s linear;
+    -moz-transition: opacity 0.3s linear;
+    -o-transition: opacity 0.3s linear;
+    transition: opacity 0.3s linear;
+}
+
+.page-splash-message {
+    text-align: center;
+    margin: 20% auto 0 auto;
+    font-size: 400%;
+    font-weight: normal;
+    -webkit-text-shadow: 2px 2px #000000;
+    text-shadow: 2px 2px #000000;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #286090;
+    padding: 0;
+}
+
+.page-splash-message.page-splash-message-subtle {
+    margin: 30% auto 0 auto;
+    font-size: 200%;
+}
+
+.progress {
+    height: 17px;
+    line-height: 17px;
+    margin: 5px 0 !important;
+    border: 0;
+}
+
+.progress .bar {
+    font-size: 12px;
+}
