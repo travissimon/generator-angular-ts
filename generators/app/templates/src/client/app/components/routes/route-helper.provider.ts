@@ -56,14 +56,12 @@ module app.components.routes {
 
 			function addWhen(initialUrl: string, redirectUrl: string): void {
 				$urlRouterProvider.when(initialUrl, redirectUrl);
-				$log.debug('Added when: ' + initialUrl + ' -> ' + redirectUrl);
 			}
 
             function addRoutes(states) {
 				states.forEach(function(state) {
 					state.resolve = angular.extend(state.resolve || {}, config.resolveAlways);
 					$stateProvider.state(state.name, state);
-					$log.debug('Adding route: ' + state.name);
 				});
 			}
 
@@ -88,7 +86,6 @@ module app.components.routes {
                         $location.path('/');
                     }
                 );
-				$log.debug('routing error handler added');
             }
 
             function init() {
