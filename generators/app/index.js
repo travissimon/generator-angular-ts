@@ -5,14 +5,9 @@ var yosay = require('yosay');
 var mkdirp = require('mkdirp');
 var path = require('path');
 var _ = require('lodash');
-var createCompounder = require('lodash/internal/createCompounder');
+var tsUtil = require('../ts-util.js');
 
 module.exports = yeoman.generators.Base.extend({
-
-	squashedCapitalizeCase: createCompounder(function(result, word, index) {
-		word = word.toLowerCase();
-		return result + word.charAt(0).toUpperCase() + word.slice(1);
-	}),
 
 	constructor: function() {
 		yeoman.generators.Base.apply(this, arguments);
@@ -30,18 +25,16 @@ module.exports = yeoman.generators.Base.extend({
 			type: 'input',
 			name: 'projectName',
 			message: 'Name of the new project',
-			default: this.appname,
+			default: this.appname
 		}, {
 			type: 'input',
 			name: 'description',
-			message: 'Description of the project',
+			message: 'Description of the project'
 		}];
 
 		this.prompt(prompts, function (props) {
 			this.props = props;
-			this.props.projectNameSnakeCase = _.snakeCase(this.props.projectName);
-			this.props.squashedNameSnakeCase = this.squashedCapitalizeCase(this.props.projectName);
-			
+			this.props.projectName = tsUtil.getCases(this.props.projectName);
 			done();
 		}.bind(this));
 	},
@@ -76,7 +69,7 @@ module.exports = yeoman.generators.Base.extend({
 				this.templatePath('_bower.json'),
 				this.destinationPath('bower.json'),
 				{
-					projectName: this.props.projectNameSnakeCase,
+					projectName: this.props.projectName,
 					description: this.props.description
 				}
 			);
@@ -112,8 +105,8 @@ module.exports = yeoman.generators.Base.extend({
 				this.templatePath('_package.json'),
 				this.destinationPath('package.json'),
 				{
-					projectName: this.props.squashedNameSnakeCase,
-					description: this.props.projectName
+					projectName: this.props.projectName,
+					description: this.props.description
 				}
 			);
 			this.fs.copyTpl(
@@ -151,9 +144,65 @@ module.exports = yeoman.generators.Base.extend({
 		},
 
 		app: function () {
-			this.log('More files to copy');
-		}
+			this.fs.copy(
+				this.templatePath('/src/client/app/*.ts'),
+				this.destinationPath('/src/client/app/')
+			);
+			this.fs.copy(
+				this.templatePath('/src/client/app/*.ts'),
+				this.destinationPath('/src/client/app/')
+			);
 
+			// components
+			this.fs.copy(
+				this.templatePath('/src/client/app/components/api/*.ts'),
+				this.destinationPath('/src/client/app/components/api/')
+			);
+			this.fs.copy(
+				this.templatePath('/src/client/app/components/navbar/*.ts'),
+				this.destinationPath('/src/client/app/components/navbar/')
+			);
+			this.fs.copy(
+				this.templatePath('/src/client/app/components/profiling/*.ts'),
+				this.destinationPath('/src/client/app/components/profiling/')
+			);
+			this.fs.copy(
+				this.templatePath('/src/client/app/components/routes/*.ts'),
+				this.destinationPath('/src/client/app/components/routes/')
+			);
+			this.fs.copy(
+				this.templatePath('/src/client/app/components/simple-grid/*.ts'),
+				this.destinationPath('/src/client/app/components/simple-grid/')
+			);
+			this.fs.copy(
+				this.templatePath('/src/client/app/components/stacktrace/*.ts'),
+				this.destinationPath('/src/client/app/components/stacktrace/')
+			);
+
+			// layout
+			this.fs.copy(
+				this.templatePath('/src/client/app/layout/*.ts'),
+				this.destinationPath('/src/client/app/layout/')
+			);
+
+			// 404 template
+			this.fs.copy(
+				this.templatePath('/src/client/app/pages/404.template.html'),
+				this.destinationPath('/src/client/app/pages/404.template.html')
+			);
+
+			// typings
+			this.fs.copy(
+				this.templatePath('/src/client/app/typings/*.ts'),
+				this.destinationPath('/src/client/app/typings/')
+			);
+
+		},
+
+		server: function() {
+			this.fs.copy('/src/server/*.*', '/src/server/');
+			this.fs.copy('/src/server/util/*.*', '/src/server/util/');
+		}
 	},
 
 	install: function () {

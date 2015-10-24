@@ -1,5 +1,5 @@
 {
-	"name": "<%= projectName %>",
+	"name": "<%= projectName.snake %>",
 	"version": "0.1.0",
 	"description": "<%= description %>",
 	"authors": [],
@@ -11,7 +11,7 @@
 		"tests"
 	],
 	"devDependencies": {
-		"angular-mocks": "~1.4.4",
+		"angular-mocks": "~1.4.4"
 	},
 	"dependencies": {
 		"jquery": "~2.1.0",

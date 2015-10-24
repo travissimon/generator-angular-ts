@@ -1,4 +1,4 @@
-# <%= projectName %>
+# <%= projectName.original %>
 
 ## Introduction
 
