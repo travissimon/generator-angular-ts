@@ -1,9 +1,0 @@
-<h1>{{::vm.article.title}}</h1>
-
-<h5 ng-if="!String.nullOrEmpty(vm.article.subhead)" ng-bind="::vm.article.subhead"></h5>
-
-<div ng-bind="::vm.article.byline" ng-if="!String.nullOrEmpty(vm.article.byline)"></div>
-
-<div>
-  <span ng-if="!String.nullOrEmpty(vm.article.dateline)">{{::vm.article.dateline}}  &#0151; </span>{{::vm.article.body}}
-</div>

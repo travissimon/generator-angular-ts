@@ -33,14 +33,14 @@ module.exports = function() {
 		],
 		build: root + '/build',
 		client: client,
-		css: 'styles/style.css',
+		css: clientApp + '/styles/style.css',
 		fonts: [
 			bower.directory + '/font-awesome/fonts/**/*.*',
 			client + '/fonts/*.*'
 		],
 		html: client + '/**/*.html',
 		htmltemplates: clientApp + '/**/*.html',
-		images: client + '/images/**/*.*',
+		images: clientApp + '/images/**/*.*',
 		index: client + '/index.html',
 		ts: [
 			clientApp + '/*.init.ts',
@@ -83,7 +83,7 @@ module.exports = function() {
 		],
 		jsPath: clientJs,
 		templatePath: client + '/templates',
-		less: client + '/styles/style.less',
+		less: clientApp + '/styles/style.less',
 		report: report,
 		root: root,
 		server: server,

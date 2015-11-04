@@ -182,11 +182,15 @@ module.exports = {
 			}
 		}
 
+		console.log('Controller and templateUrl:');
+		console.log(controller);
+		console.log(templateUrl);
+
 		vals.push({
-			name: routeName.capital,
+			name: routeName.original,
 			url: route,
 			controller: controller,
-			controlerAs: 'vm',
+			controllerAs: 'vm',
 			templateUrl: templateUrl
 		});
 

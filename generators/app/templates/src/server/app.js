@@ -24,34 +24,24 @@ console.log('NODE_ENV=' + environment);
 
 switch (environment){
     case 'build':
-        console.log('** BUILD **');
-        app.use(express.static('./build/'));
-        // Any invalid calls for templateUrls are under app/* and should return 404
-        app.use('/app/*', function(req, res, next) {
-            four0four.send404(req, res);
-        });
-        // Any deep link calls should return index.html
-        app.use('/*', express.static('./build/index.html'));
-        app.use('/styles/*', express.static('./build/styles/'));
+        console.log('Starting BUILD server');
+        app.use('/', express.static('./build/'));
         break;
     default:
-        console.log('** DEV **');
+        console.log('Starting DEV server');
         app.use(express.static('./src/client/'));
         app.use(express.static('./'));
         // Any invalid calls for templateUrls are under app/* and should return 404
         app.use('/app/*', function(req, res, next) {
             four0four.send404(req, res);
         });
-        // Any deep link calls should return index.html
-        app.use('/*', express.static('./src/client/index.html'));
 
-        app.use('/styles/*', express.static('./build/styles/'));
+        app.use('/styles/', express.static('src/client/app/styles/'));
+        app.use('/images/', express.static('src/client/app/images/'));
         break;
 }
 
 app.listen(port, function() {
     console.log('Express server listening on port ' + port);
-    console.log('env = ' + app.get('env') +
-        '\n__dirname = ' + __dirname  +
-        '\nprocess.cwd = ' + process.cwd());
+    console.log('Serving from directory: ' + process.cwd());
 });

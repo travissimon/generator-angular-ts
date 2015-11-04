@@ -22,13 +22,9 @@ module app.components.navbar {
 		link = (scope: NavbarScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) => {
 			this.$log.debug('Navbar directive: creating sections in link method');
 			scope.sections = [{
-				state: 'article.index',
-				text: 'Articles',
+				state: 'home',
+				text: 'Home',
 				isActive: true,
-			},  {
-				state: 'adminIndex',
-				text: 'Administration home',
-				isActive: false,
 			}];
 		};
 

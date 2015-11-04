@@ -166,7 +166,7 @@ gulp.task('images', ['clean-images'], function() {
 });
 
 gulp.task('less-watcher', function() {
-	gulp.watch([config.client + '/styles/*.less'], ['styles']);
+	gulp.watch([config.clientApp + '/styles/*.less'], ['styles']);
 });
 
 /**

@@ -1,8 +1,7 @@
 /// <reference path="../../typings/app.d.ts" />
 
 ((): void => {
-	app.Module.create('app.pages.admin', [
+    app.Module.create('app.components.<%= namespace.camel %>', [
 		'ui.router',
-		'app.components.routes',
 	]);
-})()
+})();

@@ -7,8 +7,8 @@ module app {
 		$inject = ['routeHelper'];
 		constructor(routeHelper) {
 			routeHelper.addRoutes(AppRoutesConfigurator.getStates());
-			routeHelper.addWhen('', '/articles');
-			routeHelper.addWhen('/', '/articles');
+			routeHelper.addWhen('', '/home');
+			routeHelper.addWhen('/', '/home');
 		}
 
 		static getStates(): Array<angular.ui.IState> {

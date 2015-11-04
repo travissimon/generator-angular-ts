@@ -1,6 +1,6 @@
 /// <reference path="../../typings/app.d.ts" />
 
-module app.pages.<%= namespace.kebab %> {
+module app.pages.<%= namespace.camel %> {
     'use strict';
 
 	export interface <%= pagename.capital %>Scope extends ng.IScope {
@@ -10,7 +10,7 @@ module app.pages.<%= namespace.kebab %> {
 	export class <%= pagename.capital %>Controller {
 
 		static $inject = ['$scope', '$log'];
-		constructor(private $scope: EditScope, private $log: ng.ILogService) {
+		constructor(private $scope: <%= pagename.capital %>Scope, private $log: ng.ILogService) {
 			this.init();
 			$scope.vm = this;
 		}
@@ -20,5 +20,5 @@ module app.pages.<%= namespace.kebab %> {
 
 	}
 
-	app.Module.load('app.pages.<%= namespace.kebab %>').addController('<%= pagename.capital %>Controller', <%= pagename.capital %>Controller);
+	app.Module.load('app.pages.<%= namespace.camel %>').addController('<%= pagename.capital %>Controller', <%= pagename.capital %>Controller);
 }

@@ -44,7 +44,6 @@ module.exports = yeoman.generators.Base.extend({
         mkdirp('src/client');
         mkdirp('src/client/app');
         mkdirp('src/client/app/components');
-        mkdirp('src/client/app/components/api');
         mkdirp('src/client/app/components/navbar');
         mkdirp('src/client/app/components/profiling');
         mkdirp('src/client/app/components/routes');
@@ -52,12 +51,11 @@ module.exports = yeoman.generators.Base.extend({
         mkdirp('src/client/app/components/stacktrace');
         mkdirp('src/client/app/layout');
         mkdirp('src/client/app/pages');
-        mkdirp('src/client/app/pages/admin');
-        mkdirp('src/client/app/pages/articles');
+        mkdirp('src/client/app/pages/home');
         mkdirp('src/client/app/typings');
-		mkdirp('src/client/images');
-		mkdirp('src/client/styles');
-		mkdirp('src/client/styles/bootstrap');
+		mkdirp('src/client/app/images');
+		mkdirp('src/client/app/styles');
+		mkdirp('src/client/app/styles/bootstrap');
 		mkdirp('src/client/templates');
 		mkdirp('src/client/test-helpers');
         mkdirp('src/server');
@@ -121,7 +119,7 @@ module.exports = yeoman.generators.Base.extend({
 
 		images: function() {
 			this.fs.copy('/src/client/favicon*', '/src/client/');
-			this.fs.copy('/src/client/images/*.*', '/src/client/images/');
+			this.fs.copy('/src/client/app/images/*.*', '/src/client/app/images/');
 		},
 
 		styles: function() {
@@ -145,44 +143,47 @@ module.exports = yeoman.generators.Base.extend({
 
 		app: function () {
 			this.fs.copy(
-				this.templatePath('/src/client/app/*.ts'),
-				this.destinationPath('/src/client/app/')
-			);
-			this.fs.copy(
-				this.templatePath('/src/client/app/*.ts'),
+				this.templatePath('/src/client/app/*.*'),
 				this.destinationPath('/src/client/app/')
 			);
 
-			// components
 			this.fs.copy(
-				this.templatePath('/src/client/app/components/api/*.ts'),
-				this.destinationPath('/src/client/app/components/api/')
-			);
-			this.fs.copy(
-				this.templatePath('/src/client/app/components/navbar/*.ts'),
+				this.templatePath('/src/client/app/components/navbar/*.*'),
 				this.destinationPath('/src/client/app/components/navbar/')
 			);
 			this.fs.copy(
-				this.templatePath('/src/client/app/components/profiling/*.ts'),
+				this.templatePath('/src/client/app/components/profiling/*.*'),
 				this.destinationPath('/src/client/app/components/profiling/')
 			);
 			this.fs.copy(
-				this.templatePath('/src/client/app/components/routes/*.ts'),
+				this.templatePath('/src/client/app/components/routes/*.*'),
 				this.destinationPath('/src/client/app/components/routes/')
 			);
 			this.fs.copy(
-				this.templatePath('/src/client/app/components/simple-grid/*.ts'),
+				this.templatePath('/src/client/app/components/simple-grid/*.*'),
 				this.destinationPath('/src/client/app/components/simple-grid/')
 			);
 			this.fs.copy(
-				this.templatePath('/src/client/app/components/stacktrace/*.ts'),
+				this.templatePath('/src/client/app/components/stacktrace/*.*'),
 				this.destinationPath('/src/client/app/components/stacktrace/')
 			);
 
 			// layout
 			this.fs.copy(
-				this.templatePath('/src/client/app/layout/*.ts'),
+				this.templatePath('/src/client/app/layout/*.*'),
 				this.destinationPath('/src/client/app/layout/')
+			);
+
+			// 404 template
+			this.fs.copy(
+				this.templatePath('/src/client/app/pages/404.template.html'),
+				this.destinationPath('/src/client/app/pages/404.template.html')
+			);
+
+			// home
+			this.fs.copy(
+				this.templatePath('/src/client/app/pages/home/*.*'),
+				this.destinationPath('/src/client/app/pages/home/')
 			);
 
 			// 404 template
@@ -193,16 +194,44 @@ module.exports = yeoman.generators.Base.extend({
 
 			// typings
 			this.fs.copy(
-				this.templatePath('/src/client/app/typings/*.ts'),
+				this.templatePath('/src/client/app/typings/*.*'),
 				this.destinationPath('/src/client/app/typings/')
+			);
+
+			this.fs.copy(
+				this.templatePath('/src/client/app/images/*.*'),
+				this.destinationPath('/src/client/app/images/')
+			);
+
+			this.fs.copy(
+				this.templatePath('/src/client/app/styles/*.*'),
+				this.destinationPath('/src/client/app/styles/')
+			);
+
+			this.fs.copy(
+				this.templatePath('/src/client/app/styles/bootstrap/*.*'),
+				this.destinationPath('/src/client/app/styles/bootstrap/')
+			);
+
+			this.fs.copy(
+				this.templatePath('/src/client/app/styles/bootstrap/mixins/*.*'),
+				this.destinationPath('/src/client/app/styles/bootstrap/mixins/')
 			);
 
 		},
 
 		server: function() {
-			this.fs.copy('/src/server/*.*', '/src/server/');
-			this.fs.copy('/src/server/util/*.*', '/src/server/util/');
+			this.fs.copy(
+				this.templatePath('/src/server/*.*'),
+				this.destinationPath('/src/server/')
+			);
+
+			this.fs.copy(
+				this.templatePath('/src/server/utils/*.*'),
+				this.destinationPath('/src/server/utils/')
+			);
 		}
+		
 	},
 
 	install: function () {

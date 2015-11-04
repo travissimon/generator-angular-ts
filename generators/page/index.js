@@ -131,7 +131,6 @@ module.exports = yeoman.generators.Base.extend({
 
 	_addModuleAndRouteFiles: function(namespace, pagename) {		
 		var moduleFilepath = this._getModuleFilePath(namespace);
-		console.log('module: ' + moduleFilepath);
 		this.fs.copyTpl(
 			this.templatePath('namespace.module.ts'),
 			this.destinationPath(moduleFilepath),
@@ -142,7 +141,6 @@ module.exports = yeoman.generators.Base.extend({
 		);
 
 		var routesFilepath = this._getRouteFilePath(namespace);
-		console.log('routes: ' + routesFilepath);
 		this.fs.copyTpl(
 			this.templatePath('namespace.routes.ts'),
 			this.destinationPath(routesFilepath),
@@ -184,13 +182,14 @@ module.exports = yeoman.generators.Base.extend({
 
 	writing: function() {
 		if (this.props.isNew) {
-			console.log('This is new');
 			this._createNamespaceDirectory(this.props.namespace);
 			this._addNamespaceToApplication(this.props.namespace);
 			this._addModuleAndRouteFiles(this.props.namespace, this.props.pageName);
 		}
 
-		this._addRoute(this.props.namespace, this.props.pageName, this.props.routeName, this.props.routeUrl, this.props.controllerName, this.props.templateUrl);
+		var templateFilePath = this._getTemplateFilePath(this.props.namespace, this.props.pageName);
+
+		this._addRoute(this.props.namespace, this.props.pageName, this.props.routeName, this.props.routeUrl, this.props.pageName.capital + 'Controller', templateFilePath);
 
 		this._addPageController(this.props.namespace, this.props.pageName);
 		this._addPageTemplate(this.props.namespace, this.props.pageName);

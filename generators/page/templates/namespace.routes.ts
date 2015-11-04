@@ -1,6 +1,6 @@
 /// <reference path="../../typings/app.d.ts" />
 
-module app.pages.<%= namespace.kebab %> {
+module app.pages.<%= namespace.camel %> {
 
 	class <%= namespace.capital %>RoutesConfigurator {
 
@@ -14,6 +14,6 @@ module app.pages.<%= namespace.kebab %> {
 		}
 	}
 
-	app.Module.load('app.pages.<%= namespace.kebab %>').run(<%= namespace.capital %>RoutesConfigurator);
+	app.Module.load('app.pages.<%= namespace.camel %>').run(<%= namespace.capital %>RoutesConfigurator);
 
 }
