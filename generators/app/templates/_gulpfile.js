@@ -13,6 +13,7 @@ var inject = require('gulp-inject');
 var path = require('path');
 var _ = require('lodash');
 var $ = require('gulp-load-plugins')({lazy: true});
+var gulpConcat = require('gulp-concat');
 
 var colors = $.util.colors;
 var envenv = $.util.env;
@@ -87,37 +88,6 @@ gulp.task('compile-ts', ['gen-ts-refs'], function () {
 	return tsResult.js
 		   .pipe(sourcemaps.write())
 		   .pipe(gulp.dest(config.tsOutputPath));
-});
-
-
-
-
-// JS Analysis
-
-/**
- * vet the code and create coverage report
- * @return {Stream}
- */
-gulp.task('vet', function() {
-	log('Analyzing source with JSHint and JSCS');
-
-	return gulp
-		   .src(config.alljs)
-		   .pipe($.if(args.verbose, $.print()))
-			.pipe($.jshint())
-			.pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
-			.pipe($.jshint.reporter('fail'))
-			.pipe($.jscs());
-});
-
-/**
- * Create a visualizer report
- */
-gulp.task('plato', function(done) {
-	log('Analyzing source with Plato');
-	log('Browse to /report/plato/index.html to see Plato results');
-
-	startPlatoVisualizer(done);
 });
 
 
@@ -287,17 +257,27 @@ gulp.task('build', ['optimize', 'images', 'fonts'], function() {
 		subtitle: 'Deployed to the build folder',
 		message: 'Running `gulp serve-build`'
 	};
-	del(config.build);
+	del(config.temp);
 	log(msg);
 	notify(msg);
 });
+
+gulp.task('combine-ts', [], function() {
+	log('combining the typescript');
+
+	gulp
+		.src(config.allTypeScript)
+		.pipe(gulpConcat('all.ts'))
+		.pipe(gulp.dest(config.build));
+});
+
 
 /**
  * Optimize all files, move to a build folder,
  * and inject them into the new index.html
  * @return {Stream}
  */
-gulp.task('optimize', ['inject', 'inject-templates', 'test'], function() {
+gulp.task('optimize', ['inject', 'inject-templates'], function() {
 	log('Optimizing the js, css, and html');
 
 	var assets = $.useref.assets({searchPath: './'});
