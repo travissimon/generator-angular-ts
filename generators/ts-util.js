@@ -149,22 +149,24 @@ module.exports = {
 		var arrayNode = this._findFirstArray(sourceFile);
 
 		// convert it into useable strings
-		var vals = this._convertArrayNode(arrayNode);
-		if (vals.indexOf(moduleName) > 0) {
+		var arrAsText = arrayNode.getText(sourceFile);
+
+		var arr = JSON.parse(arrayNode.getText(sourceFile));
+		if (arr.indexOf(moduleName) > 0) {
 			console.log(chalk.yellow(filePath + ' already contains the module \'' + moduleName + '\' - skipping file'));
 			return;
 		}
 
 		// add our value
-		vals.push(moduleName);
-		vals.sort();
+		arr.push(moduleName);
+		arr.sort();
 
 		// recreate JS array
-		var newArr = this._arrayToCode(vals);
+		var newArr = this._arrayToCode(arr);
 
 		// replace current array with new content
 		var head = contents.substring(0, arrayNode.pos);
-		var tail = contents.substring(arrayNode.end + 1);
+		var tail = contents.substring(arrayNode.end);
 		var newContent = head + newArr + tail;
 
 		// format our modified code
