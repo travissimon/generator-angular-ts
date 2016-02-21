@@ -574,6 +574,7 @@ function startBrowserSync(isDev, specRunner) {
 	// If dev: watches typescript files, compiles it to js, browser-sync handles reload
 	if (isDev) {
 		gulp.watch([config.ts], ['compile-ts']).on('change', changeEvent);
+		gulp.watch([config.html], ['templatecache', 'compile-ts']).on('change', changeEvent);
 		gulp.watch([config.less], ['styles']).on('change', changeEvent);
 	} else {
 		gulp.watch([config.ts, config.css, config.html], ['optimize', browserSync.reload]).on('change', changeEvent);
